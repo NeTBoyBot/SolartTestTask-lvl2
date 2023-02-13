@@ -7,7 +7,8 @@ public class Program
 {
     public static void Main()
     {
-        UserController.SelectAction();
+        UserController.GetAll();
+        //UserController.SelectAction();
 
     }
 }
