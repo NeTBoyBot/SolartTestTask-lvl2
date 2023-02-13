@@ -8,7 +8,6 @@ public class Program
     public static void Main()
     {
         UserController.GetAll();
-        //UserController.SelectAction();
-
+        UserController.SelectAction();
     }
 }

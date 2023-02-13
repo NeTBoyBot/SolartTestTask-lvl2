@@ -44,7 +44,9 @@ namespace SolartTestTask.Controllers
                     }
                     Console.WriteLine("Введите дату рождения");
                     DateTime date = DateTime.Parse(Console.ReadLine());
-                    db.Users.Add(new User(){ UserName = name, birthDay = date, nearestbirthDay = new DateTime(DateTime.Now.Year, date.Month, date.Day)});
+                    db.Users.Add(new User(){ UserName = name,
+                        birthDay = date,
+                        nearestbirthDay = new DateTime(DateTime.Now.Year, date.Month, date.Day)});
                     db.SaveChanges();
                     Console.WriteLine("Пользователь был успешно добавлен");
                 }
@@ -94,21 +96,20 @@ namespace SolartTestTask.Controllers
                     Console.WriteLine("Введите имя пользователя");
                     string name = Console.ReadLine();
                     var user = db.Users.Select(person => person).Where(person => person.UserName == name).ToArray().FirstOrDefault();
-                    if (user != null)
-                    {
-                        Console.WriteLine("Введите новое имя пользователя(Пустая строка что бы оставить без изменений)");
-                        string newname = Console.ReadLine();
-
-                        Console.WriteLine("Введите новую дату рождения((Пустая строка что бы оставить без изменений))");
-                        string newbirthday = Console.ReadLine();
-
-                        user.UserName = newname == "" ? user.UserName : newname;
-                        user.birthDay = newbirthday == "" ? user.birthDay : DateTime.Parse(newbirthday);
-
-                        db.SaveChanges();
-                    }
-                    else
+                    if (user == null)
                         throw new Exception("Данный пользователь не найден");
+
+                    Console.WriteLine("Введите новое имя пользователя(Пустая строка что бы оставить без изменений)");
+                    string newname = Console.ReadLine();
+
+                    Console.WriteLine("Введите новую дату рождения((Пустая строка что бы оставить без изменений))");
+                    string newbirthday = Console.ReadLine();
+
+                    user.UserName = newname == "" ? user.UserName : newname;
+                    user.birthDay = newbirthday == "" ? user.birthDay : DateTime.Parse(newbirthday);
+
+                    db.SaveChanges();
+                   
                     Console.WriteLine("Пользователь был успешно обновлён");
                 }
             }
@@ -133,15 +134,13 @@ namespace SolartTestTask.Controllers
                         if ((DateTime.Now - use[i].nearestbirthDay).Days > 30)
                             users.Remove(use[i]);
                     Console.WriteLine("Ближайшие дни рождения:");
-                    if (users != null)
-                    {
-                        foreach (var user in users)
-                        {
-                            Console.WriteLine($"[{user.UserID}] {user.UserName} {user.birthDay}");
-                        }
-                    }
-                    else
+                    if (users == null)
                         throw new Exception("Ближайших дней рождения не найдено");
+
+                    foreach (var user in users)
+                    {
+                        Console.WriteLine($"[{user.UserID}] {user.UserName} {user.birthDay}");
+                    }      
                 }
             }
             catch (Exception ex)
