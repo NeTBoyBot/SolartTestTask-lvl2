@@ -21,7 +21,7 @@ namespace SolartTestTask.Controllers
 
                 foreach (var user in users)
                 {
-                    Console.WriteLine($"[{user.UserID}] {user.UserName} {user.birthDay}");
+                    Console.WriteLine(user.ToString());
                 }
             }
             Console.ReadKey();
@@ -142,7 +142,7 @@ namespace SolartTestTask.Controllers
 
                     foreach (var user in users)
                     {
-                        Console.WriteLine($"[{user.UserID}] {user.UserName} {user.birthDay}");
+                        Console.WriteLine(user.ToString());
                     }      
                 }
             }

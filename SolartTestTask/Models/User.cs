@@ -21,6 +21,11 @@ namespace SolartTestTask.Models
         {
             get => DateTime.Now - nearestbirthDay;
         }
-       
+
+        public override string ToString()
+        {
+            return $"[{UserID}] {UserName} {birthDay.ToString("d")}";
+        }
+
     }
 }
