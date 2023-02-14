@@ -19,10 +19,7 @@ namespace SolartTestTask.Models
 
         public TimeSpan TimeBeforeBirthday
         {
-            get
-            {
-                return DateTime.Now - nearestbirthDay;
-            }
+            get => DateTime.Now - nearestbirthDay;
         }
        
     }

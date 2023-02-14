@@ -37,17 +37,20 @@ namespace SolartTestTask.Controllers
                 {
                     Console.WriteLine("Введите ФИО");
                     string name = Console.ReadLine();
+
                     var user = db.Users.Select(person => person).Where(person => person.UserName == name).FirstOrDefault();
+
                     if (user != null)
-                    {
                         throw new Exception("Такой пользователь уже существует!");
-                    }
+
                     Console.WriteLine("Введите дату рождения");
                     DateTime date = DateTime.Parse(Console.ReadLine());
+
                     db.Users.Add(new User(){ UserName = name,
                         birthDay = date,
                         nearestbirthDay = new DateTime(DateTime.Now.Year, date.Month, date.Day)});
                     db.SaveChanges();
+
                     Console.WriteLine("Пользователь был успешно добавлен");
                 }
             }
@@ -68,7 +71,7 @@ namespace SolartTestTask.Controllers
                     Console.WriteLine("Введите имя пользователя");
                     string name = Console.ReadLine();
 
-                    var user = db.Users.Select(person => person).Where(person => person.UserName == name).ToArray();
+                    var user = db.Users.Select(person => person).Where(person => person.UserName == name).FirstOrDefault();
 
                     if (user != null)
                         db.Users.RemoveRange(user);
