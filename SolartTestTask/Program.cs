@@ -7,7 +7,7 @@ public class Program
 {
     public static void Main()
     {
-        UserController.GetAllAndNearestBirthdays();
+        UserController.GetNearestBirthdays();
         UserController.SelectAction();
     }
 }

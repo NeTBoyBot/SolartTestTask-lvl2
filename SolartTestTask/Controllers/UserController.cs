@@ -153,38 +153,6 @@ namespace SolartTestTask.Controllers
             Console.ReadKey();
         }
 
-        public static void GetAllAndNearestBirthdays()
-        {
-            Console.Clear();
-            using (ApplicationContext db = new ApplicationContext())
-            {
-                var users = db.Users.ToList();
-
-                Console.WriteLine("Список всех дней рождений:");
-
-                foreach (var user in users)
-                {
-                    Console.WriteLine(user.ToString());
-                }
-
-                User[] use = users.ToArray();
-
-                for (int i = 0; i < use.Length; i++)
-                    if ((DateTime.Now - use[i].nearestbirthDay).Days > 30)
-                        users.Remove(use[i]);
-                Console.WriteLine("Ближайшие дни рождения:");
-                if (users == null)
-                    throw new Exception("Ближайших дней рождения не найдено");
-
-                foreach (var user in users)
-                {
-                    Console.WriteLine(user.ToString());
-                }
-
-                Console.ReadKey();
-            }
-        }
-
             public static void SelectAction()
         {
             Console.Clear();
